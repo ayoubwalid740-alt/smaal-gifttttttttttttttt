@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 EMAN | Love Cinema</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    overflow:hidden;
+    text-align:center;
+    background: radial-gradient(circle,#ff9a9e,#fad0c4,#ffc3a0);
+}
+
+#counter{
+    position:fixed;
+    top:10px;
+    right:10px;
+    background:rgba(255,255,255,0.25);
+    padding:10px 14px;
+    border-radius:12px;
+    color:#b3003c;
+    font-weight:bold;
+    backdrop-filter: blur(8px);
+}
+
+.bg-text{
+    position:absolute;
+    font-size:18px;
+    color:rgba(255,255,255,0.22);
+    white-space:nowrap;
+    animation: move 14s linear infinite;
+}
+
+@keyframes move{
+    0%{transform:translateX(-100vw);}
+    100%{transform:translateX(100vw);}
+}
+
+.page{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+#p1{display:flex;}
+
+.box{
+    background: rgba(255,255,255,0.18);
+    padding:28px;
+    border-radius:25px;
+    backdrop-filter: blur(12px);
+    max-width:90%;
+    color:white;
+    box-shadow:0 0 25px rgba(255,0,80,0.2);
+}
+
+button{
+    padding:12px 18px;
+    border:none;
+    border-radius:20px;
+    background:#ff2e63;
+    color:white;
+    margin:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.heart{
+    position:absolute;
+    animation: float 6s linear;
+    font-size:18px;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);opacity:0;}
+    30%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.title{
+    font-size:24px;
+    font-weight:bold;
+    text-shadow:0 0 15px pink;
+}
+</style>
+</head>
+
+<body>
+
+<div id="counter">💖 حب إيمان: ∞</div>
+
+<div class="bg-text" style="top:10%">إيمان… أنتِ نبض قلبي الوحيد ❤️</div>
+<div class="bg-text" style="top:30%">أحبك أكثر من أي شيء في هذا العالم 💖</div>
+<div class="bg-text" style="top:50%">أنتِ عالمي وملاذي الوحيد 💕</div>
+<div class="bg-text" style="top:70%">لن أحب أحدًا غيرك أبدًا 💘</div>
+
+<div class="page" id="p1">
+    <div class="box">
+        <div class="title">💖 إلى إيمان</div>
+
+        <p style="line-height:1.9">
+        إيمان ❤️<br><br>
+
+        أنتِ لستِ مجرد شخص في حياتي… أنتِ الحياة نفسها 💖<br>
+        أنتِ النبض الذي يجعل قلبي يستمر في الحياة 💕<br><br>
+
+        أحبك حبًا لا نهاية له ولا حدود له ❤️<br>
+        كل لحظة بدونك أشعر بأنها فراغ لا يُحتمل 💔<br><br>
+
+        وجودك في حياتي هو أجمل صدفة وأجمل قدر 💖<br>
+        أعدك أن أبقى دائمًا بجانبك… سندك وحبك وكل شيء لك 💕
+        </p>
+
+        <button onclick="start()">🎬 دخول الفيلم</button>
+    </div>
+</div>
+
+<div class="page" id="p2">
+    <div class="box">
+        <h2 id="msg">💖 إيمان… أنتِ قلب هذا الفيلم</h2>
+
+        <button onclick="loveMsg()">💞 اضغطي هنا</button>
+    </div>
+</div>
+
+<script>
+
+let messages = [
+"إيمان ❤️ أنتِ روحي وقلبي وكل حياتي",
+"أحبك أكثر من أي شيء في هذا العالم 💖",
+"أنتِ أجمل ما حدث لي في حياتي 🌹",
+"أشتاق إليكِ حتى عندما تكونين قريبة مني 💕",
+"أنتِ نبضي الذي لا يتوقف ❤️",
+"بدونك لا معنى لأي شيء في الحياة 💖",
+"أحبك إلى الأبد يا إيمان 💕",
+"أنتِ الحلم الذي لا أريد الاستيقاظ منه ❤️",
+"وجودك يجعل كل شيء جميلًا 💖",
+"أنتِ عالمي الوحيد الذي أعيش من أجله 💕"
+];
+
+function start(){
+    document.getElementById("p1").style.display="none";
+    document.getElementById("p2").style.display="flex";
+
+    setInterval(createHeart,180);
+}
+
+function loveMsg(){
+    let msg=document.getElementById("msg");
+    let text=messages[Math.floor(Math.random()*messages.length)];
+
+    msg.innerHTML="";
+    let i=0;
+
+    let t=setInterval(()=>{
+        msg.innerHTML+=text[i];
+        i++;
+        if(i>=text.length) clearInterval(t);
+    },28);
+
+    burst();
+}
+
+function createHeart(){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+}
+
+function burst(){
+    for(let i=0;i<25;i++){
+        setTimeout(createHeart,i*25);
+    }
+}
+
+setInterval(createHeart,250);
+
+</script>
+
+</body>
+</html>
