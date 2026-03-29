@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 EMAN | Love Cinema</title>
+<title>💖 Eman App</title>
 
 <style>
 body{
@@ -11,69 +11,78 @@ body{
     font-family: Arial;
     overflow:hidden;
     text-align:center;
-    background: radial-gradient(circle,#ff9a9e,#fad0c4,#ffc3a0);
+    background: linear-gradient(45deg,#ffd6e0,#ff9ab3);
 }
 
-#counter{
-    position:fixed;
-    top:10px;
-    right:10px;
-    background:rgba(255,255,255,0.25);
-    padding:10px 14px;
-    border-radius:12px;
-    color:#b3003c;
-    font-weight:bold;
-    backdrop-filter: blur(8px);
-}
-
-.bg-text{
-    position:absolute;
-    font-size:18px;
-    color:rgba(255,255,255,0.22);
-    white-space:nowrap;
-    animation: move 14s linear infinite;
-}
-
-@keyframes move{
-    0%{transform:translateX(-100vw);}
-    100%{transform:translateX(100vw);}
-}
-
+/* الصفحات */
 .page{
-    display:none;
+    position:absolute;
+    width:100%;
     height:100vh;
+    display:none;
     justify-content:center;
     align-items:center;
     flex-direction:column;
 }
 
-#p1{display:flex;}
-
-.box{
-    background: rgba(255,255,255,0.18);
-    padding:28px;
-    border-radius:25px;
-    backdrop-filter: blur(12px);
-    max-width:90%;
-    color:white;
-    box-shadow:0 0 25px rgba(255,0,80,0.2);
+.active{
+    display:flex;
 }
 
+/* صندوق */
+.box{
+    background: rgba(255,255,255,0.3);
+    padding:30px;
+    border-radius:25px;
+    backdrop-filter: blur(15px);
+    color:#ff2e63;
+    box-shadow:0 0 25px rgba(255,0,80,0.3);
+}
+
+/* العناوين */
+h2{
+    font-size:28px;
+    color:#ff2e63;
+    text-shadow:0 0 10px pink;
+}
+
+/* النص */
+p{
+    font-size:18px;
+    color:#ff4d88;
+    line-height:1.7;
+}
+
+/* زر */
 button{
     padding:12px 18px;
+    margin:8px;
     border:none;
     border-radius:20px;
     background:#ff2e63;
     color:white;
-    margin:8px;
+    font-size:16px;
     cursor:pointer;
-    font-size:15px;
+    box-shadow:0 0 12px rgba(255,0,80,0.5);
 }
 
+/* input */
+input{
+    padding:10px;
+    border-radius:15px;
+    border:none;
+    margin:10px;
+    text-align:center;
+    font-size:16px;
+    background:#ffe6f0;
+    color:#ff2e63;
+    outline:none;
+}
+
+/* قلوب */
 .heart{
     position:absolute;
-    animation: float 6s linear;
-    font-size:18px;
+    animation:float 6s linear;
 }
 
 @keyframes float{
@@ -81,107 +90,98 @@ button{
     30%{opacity:1;}
     100%{transform:translateY(-10vh);opacity:0;}
 }
-
-.title{
-    font-size:24px;
-    font-weight:bold;
-    text-shadow:0 0 15px pink;
-}
 </style>
 </head>
 
 <body>
 
-<div id="counter">💖 حب إيمان: ∞</div>
-
-<div class="bg-text" style="top:10%">إيمان… أنتِ نبض قلبي الوحيد ❤️</div>
-<div class="bg-text" style="top:30%">أحبك أكثر من أي شيء في هذا العالم 💖</div>
-<div class="bg-text" style="top:50%">أنتِ عالمي وملاذي الوحيد 💕</div>
-<div class="bg-text" style="top:70%">لن أحب أحدًا غيرك أبدًا 💘</div>
-
-<div class="page" id="p1">
+<!-- الصفحة 1 -->
+<div class="page active" id="p1">
     <div class="box">
-        <div class="title">💖 إلى إيمان</div>
-
-        <p style="line-height:1.9">
-        إيمان ❤️<br><br>
-
-        أنتِ لستِ مجرد شخص في حياتي… أنتِ الحياة نفسها 💖<br>
-        أنتِ النبض الذي يجعل قلبي يستمر في الحياة 💕<br><br>
-
-        أحبك حبًا لا نهاية له ولا حدود له ❤️<br>
-        كل لحظة بدونك أشعر بأنها فراغ لا يُحتمل 💔<br><br>
-
-        وجودك في حياتي هو أجمل صدفة وأجمل قدر 💖<br>
-        أعدك أن أبقى دائمًا بجانبك… سندك وحبك وكل شيء لك 💕
-        </p>
-
-        <button onclick="start()">🎬 دخول الفيلم</button>
+        <h2>💖 إلى إيمان</h2>
+        <p>أنتِ حياتي وكل شيء جميل فيها ❤️</p>
+        <button onclick="go('p2')">🎬 دخول</button>
     </div>
 </div>
 
+<!-- الصفحة 2 -->
 <div class="page" id="p2">
     <div class="box">
-        <h2 id="msg">💖 إيمان… أنتِ قلب هذا الفيلم</h2>
+        <h2 id="msg">💖 أحبك يا إيمان</h2>
+        <button onclick="love()">💞 اضغطي هنا</button>
+        <button onclick="go('p3')">🔐 رسالة سرية</button>
+        <button onclick="go('p1')">⬅ رجوع</button>
+    </div>
+</div>
 
-        <button onclick="loveMsg()">💞 اضغطي هنا</button>
+<!-- صفحة السر -->
+<div class="page" id="p3">
+    <div class="box">
+        <h2>🔐 كلمة السر</h2>
+        <input id="pass" placeholder="اكتبي كلمة السر">
+        <button onclick="check()">دخول</button>
+        <button onclick="go('p2')">⬅ رجوع</button>
+    </div>
+</div>
+
+<!-- الصفحة الخاصة -->
+<div class="page" id="p4">
+    <div class="box">
+        <h2>💖 رسالة خاصة</h2>
+        <p>إيمان…انتي حبي الحقيقي والشخص الذي لطالما كنت احلم به ان يكون بجانبي وهو الشخص الذي لطالما احتجته بجانبي كل شيء فيك جميل اخلاقك عقليتك وتفكيرك الذي يوالمني طيبتك وبياض قلبك الذي يفوق بياض ذالك الوجه جذاب وتلك العينين البنيتين اللتان تتحولان الا عسليتان بمجرد ظهور الشمس تلك العينيان الرائعتان اللتان تراني انا و انا فقط تجمعنا صفات مشتركة كثير وذلك الشيء اول الذي لاحظته بيننا احبك احبك واعشقك ياروحي وقلبي وحبيبتي احبك بكل شيء احبك بكل قوايي ومجهودي و دائما ابحث عن تقديم لك كل ما تحبينه وكل ما يفرحك وكل شيء استطيع ان اقدمه لك وهذا لشعرك بمذا قيمتك عندي ومدى حبي لك وتعويضا علا ما مررتي فيه من قبل احاول دائما شفاء تلك الجروح التي فيك من قبل دائما احاول تنفيس هم عنك لانني احب واحس بك دائما دائما احس بما تمرين به يا حبي اسعا دائما لتعويضك عن ما فات يا روحي احبك احبك ددائم ومحظوظ بك يا فتاتي محظوظ بفتات مثلك تحبني وتعشقني وتخاف عليا من كل شيء تعرف مكانتي ومدا اهميتي ودائما بجانبي احبك وانا سند لك وداءما في كتافك يا بنتي صغيرتي حبيبة قلبي دائما يا حبيبتي اهربي ولجءي الي في كل حالاتك حم فرح حزن غبنة ضيقة انا دائما ماواك وحتا ان كنا بيننا توتر فمن اجلك انسى كل شيء يا روحي انا دائما موجود بجانبك يا قلبي ان كان كل عالم ضدك فانا معك ضد عالم احبك واحبك واحححححبك يا بنتي صغيرتي لطالما كنتي بنتا صغيرتا في نظري وستظلين صغيرتا مهما كبرتي يابنتي احبك احبك واحبك واخاف عليكم من كل شيئ يا ايماني بنتي حبيبتي احببتك بقلبي قبل عيني احببت شخصيتك  قبل كل شيء احببت مظهرك داخلي قبل خارجي لطالما اردت ان اقدم لك كل ما تريدينه كل ما يخصك كل شيء كان نفسك  فيه اقدمه لك وحاول جاهدا ايصالك اليه   حب حنان اهتمام  استماع  تقدير   كل شيء يا حبيبتي لا احبذ ابدا ان ينقصك شيء معي يا روحي  لا احب اي يصيبك مكروه  يا روحي لانك قلبي  افقد ناس من اجلك ولكن لا افقدك هذا ما يهمني احب ان تشاركيني يومك اهتمامك ما تحبين ما تحلمين به ما يضرك كل تفصيلة صغيرة في يومك احب ان تشاركينها معي احب ان  استمع لك وانتي تسردين لي  شيء حصل لك عن شيء لامس قلبك شيء زعلك استمع لك بكل اهتمام وتركيز  انعزل عن العالم الذي حولي  واركز معك وما حكايتك وسردك لي احبك احبك يا قلبي  انتي عمري وحياتي وبنتي وكل شيء   كل يوم يزد حبي لك يوما يعد يوما دقيقتا بعد دقيقة ثانية بعد ثانية...... احبك احبك احب تلك الطريقة التي تسردين بها مشاعرك تجاهي مشاعرك التي تحسين بها يمكنني ان اظل اسمعك لايام  احب  طريقتك في خوف علي تشعرني وكانني شيء ثمين  لا يجب ان يحصل له شيء او حتا  ان يلمسه خدش اجي توصياتك ونصائحك التي تقدمينها الي النابع من قلب ومفعمة بخوفك علي احب تلك الطريقة التي تسمعين لي بها حين افرغ لك همي  التي تجعلني اشرع في كلام بدون توقف احب تلك ردات الفعل التي تعطينها لي النقية ال عفوية  الخالصة من صدق وحب  وخوف واهتمام بي احبها حيض انها تنسيني تنسييني في مشكلة التي كنت اسردها لك احب صدق  ونقائك احب ةكل شيء فيك حيث اراكي رقم وااحد اراك اجمل خلق الله لا ارى فتاتا بعد ياروحي تنسيني في كل جنس انثوي انا امتفيت بك تملئين كل شيء في عقلي قلبي عيني لا يمكنني ان ارا فتات اخرا  من غيرك يا حبي اراك انتي فوقهم جيمعا وتفوقينهم بسنين ضوئية يا حبي  .. احبك وسوف اظل احبك يا عمري انتي روحي وكل شيئ حفظك الله ورعاك يا عمري   ❤️</p>
+        <button onclick="go('p2')">⬅ رجوع</button>
     </div>
 </div>
 
 <script>
 
-let messages = [
-"إيمان ❤️ أنتِ روحي وقلبي وكل حياتي",
-"أحبك أكثر من أي شيء في هذا العالم 💖",
-"أنتِ أجمل ما حدث لي في حياتي 🌹",
-"أشتاق إليكِ حتى عندما تكونين قريبة مني 💕",
-"أنتِ نبضي الذي لا يتوقف ❤️",
-"بدونك لا معنى لأي شيء في الحياة 💖",
-"أحبك إلى الأبد يا إيمان 💕",
-"أنتِ الحلم الذي لا أريد الاستيقاظ منه ❤️",
-"وجودك يجعل كل شيء جميلًا 💖",
-"أنتِ عالمي الوحيد الذي أعيش من أجله 💕"
+let messages=[
+"أحبك جدًا 💖",
+"أنتِ روحي ❤️",
+"أنتِ عالمي 💕",
+"أشتاق إليك 💞",
+"أنتِ أجمل شيء في حياتي 💖"
 ];
 
-function start(){
-    document.getElementById("p1").style.display="none";
-    document.getElementById("p2").style.display="flex";
-
-    setInterval(createHeart,180);
+function go(id){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
 }
 
-function loveMsg(){
+function love(){
     let msg=document.getElementById("msg");
-    let text=messages[Math.floor(Math.random()*messages.length)];
-
-    msg.innerHTML="";
-    let i=0;
-
-    let t=setInterval(()=>{
-        msg.innerHTML+=text[i];
-        i++;
-        if(i>=text.length) clearInterval(t);
-    },28);
-
+    msg.innerText=messages[Math.floor(Math.random()*messages.length)];
     burst();
 }
 
+/* كلمة السر */
+function check(){
+    let v=document.getElementById("pass").value;
+
+    if(v==="إيمان"){
+        go("p4");
+    }else{
+        alert("❌ كلمة السر غير صحيحة");
+    }
+}
+
+/* قلوب */
 function createHeart(){
     let h=document.createElement("div");
     h.className="heart";
-    h.innerHTML="❤️";
+    h.innerHTML="💖";
     h.style.left=Math.random()*100+"vw";
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),6000);
 }
 
 function burst(){
-    for(let i=0;i<25;i++){
-        setTimeout(createHeart,i*25);
+    for(let i=0;i<15;i++){
+        setTimeout(createHeart,i*30);
     }
 }
 
-setInterval(createHeart,250);
+setInterval(createHeart,300);
 
 </script>
 
